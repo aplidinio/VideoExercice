@@ -44,7 +44,7 @@ public class User {
 		return myUser;
 	}
 	
-	public User getUser(String userName, List<User> users) {//revisa esto y compara con el createUSer, quizás carga la lista en el main
+	public String getUser(List<User> users) {//revisa esto y compara con el createUSer, quizás carga la lista en el main
 		
 		Scanner entry = new Scanner(System.in);
 		User myUser = null;
@@ -60,8 +60,8 @@ public class User {
 			
 				if ((e.userName).equals(userName)) {				
 					if ((e.psswd).equals(psswd)) {	
-						System.out.println("Bienvenido, " + e.userName);
-						return e;
+						System.out.println("\nWelcome, " + e.userName);
+						return e.userName;
 					} else {					
 						System.out.println("Invalid password");
 						break;
@@ -69,11 +69,41 @@ public class User {
 				}
 			}
 			System.out.println("User not found");
-			myUser = null;
-	
+				
 		} while (myUser == null);
 				
-		return myUser;
+		return null;
+	}
+
+	public Video createVideo(String userName) {// cambiar a user
+		
+		String title;
+		String urlAddress;
+		String tag;
+		
+		Scanner entry = new Scanner(System.in);
+		List <String> newTags = new ArrayList <String>();
+		
+		System.out.println("Introducing new video");
+		System.out.println("*********************");
+		
+		System.out.println("\nPlease introduce title: ");
+		title = entry.nextLine();
+		
+		System.out.println("Please introduce video url: ");
+		urlAddress = entry.nextLine();
+		
+		do {
+			System.out.println("Please introduce video tag (type '0' to finish): ");
+			tag = entry.nextLine();
+			if (!tag.equals("0")) newTags.add(tag);
+			
+		} while (!tag.equals("0"));
+		
+		System.out.println(userName + " " + urlAddress + " " + title + " " + newTags);
+		
+		Video newVideo = new Video(userName, urlAddress, title, newTags);
+		return newVideo;
 	}
 		
 	private String firstName;
