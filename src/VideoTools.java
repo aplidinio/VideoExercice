@@ -1,8 +1,9 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class VideoTools {
 
-	public static String introMenu() {
+	public static byte introMenu() {
 				
 		Scanner entry =new Scanner(System.in);
 		
@@ -12,12 +13,13 @@ public class VideoTools {
 		do {
 			
 			System.out.println("Please enter option: \n1. New User \n2. User login");
-			select = entry.nextLine();
+			select0 = entry.nextLine();
 			
-			if (!select.equals("1") && !select.equals("2"))
+			if (!select0.equals("1") && !select0.equals("2"))
 				System.out.println("Illegal option.");
-		} while (!select.equals("1") && !select.equals("2"));
+		} while (!select0.equals("1") && !select0.equals("2"));
 		
+		select = (byte)Integer.parseInt(select0);
 		return select;
 		
 	}
@@ -52,7 +54,38 @@ public class VideoTools {
 		return newUser;
 	}
 	
-	public static String mainMenu() {
+	public static String getUser(List<User> users) {//revisa esto y compara con el createUSer, quiz�s carga la lista en el main
+		
+		Scanner entry = new Scanner(System.in);
+		User myUser = null;
+		do {
+			
+			System.out.println ("Please enter your User name: ");
+			userName = entry.nextLine();
+		
+			System.out.println ("Please enter password: ");
+			psswd = entry.nextLine();
+		
+			for (User e:users) {
+			
+				if ((e.userName).equals(userName)) {				
+					if ((e.psswd).equals(psswd)) {	
+						System.out.println("\nWelcome, " + e.userName);//¿Por qué e.userName da señal de advertencia?
+						return e.userName;
+					} else {					
+						System.out.println("Invalid password");
+						break;
+					}
+				}
+			}
+			System.out.println("User not found");
+				
+		} while (myUser == null);
+				
+		return null;
+	}
+	
+	public static byte mainMenu() {
 		
 		Scanner entry =new Scanner(System.in);
 		
@@ -61,18 +94,32 @@ public class VideoTools {
 			System.out.println("\nPlease try option:");
 			System.out.println("******************");
 			System.out.println("1. Create new video \n2. List your videos \n3. Delete a video \n4. Log out");
-			select = entry.nextLine();
+			select0 = entry.nextLine();
 		
-			if (!select.equals("1") && !select.equals("2") && !select.equals("3") && !select.equals("4"))
+			if (!select0.equals("1") && !select0.equals("2") && !select0.equals("3") && !select0.equals("4"))
 				System.out.println("Illegal option.");
 		
-		} while (!select.equals("1") && !select.equals("2") && !select.equals("3") && !select.equals("4"));
-	 
-		
+		} while (!select0.equals("1") && !select0.equals("2") && !select0.equals("3") && !select0.equals("4"));
+	 	
+		select = (byte)Integer.parseInt(select0);
 		return select;
 	}
 	
-	private static String select;
+	public static boolean turnAgain() {
+		
+		Scanner entry =new Scanner(System.in);
+		
+		System.out.println("\nDo you want to run another option (y/N)?");
+		select0 = entry.nextLine();
+			
+		if (select0.equals("y") || select0.equals("Y"))
+			return true;
+		else return false;
+			
+	}
+	
+	private static byte select;
+	private static String select0;
 	private static String firstName;
 	private static String lastName;
 	private static String userName;

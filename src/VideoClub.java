@@ -5,20 +5,9 @@ public class VideoClub {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		String firstName=null;
-		String lastName=null;
-		String userName0=null;
-		String userName=null;
-		String psswd=null;
-		String urlAddress=null;
-		String title=null;
-		//List <String> myTags=null;
-		int year = 0;
-		int month = 0;
-		int day = 0;
-		String select;
-		byte select2;
-		
+		byte select;
+		String currentUser = null;
+				
 		List <User> users = new ArrayList <User>();
 		List <Video> videos = new ArrayList <Video>();
 	//	List <String> myTags = new ArrayList <String>();
@@ -45,110 +34,47 @@ public class VideoClub {
 		videos.add(video4);
 		videos.add(video5);
 			
-
-		//User myUser = new User (firstName, lastName, userName, psswd, year, month, day);
-		//Video myVideo = new Video (userName, urlAddress, title, myTags);
-		VideoTools.introMenu();			
-		//Scanner entry =new Scanner(System.in);
-		
-		/*System.out.println("Video-Club");
-		System.out.println("**********");
-				
-		do {
-			
-			System.out.println("Please enter option: \n1. New User \n2. User login");
-			select = entry.nextLine();
-			
-			if (!select.equals("1") && !select.equals("2"))
-				System.out.println("Illegal option.");
-		} while (!select.equals("1") && !select.equals("2"));*/
-		/*Scanner entry =new Scanner(System.in);
-		if (select.equals("1")) {
-						
-			System.out.println ("Please enter your first name: ");
-			firstName = entry.nextLine();
-			
-			System.out.println ("Please enter your last name: ");
-			lastName = entry.nextLine();
-			
-			System.out.println ("Please enter an User Name: ");
-			userName = entry.nextLine();
-			
-			System.out.println ("Please enter your birth date: \nYear: ");
-			year = Integer.parseInt(entry.nextLine());
-			
-			System.out.println ("Month: ");
-			month = Integer.parseInt(entry.nextLine());;
-			
-			System.out.println ("Day: ");
-			day = Integer.parseInt(entry.nextLine());;
-			
-			System.out.println ("Please enter password: ");
-			psswd = entry.nextLine();
-					
-			User newUser = new User (firstName, lastName, userName, psswd, year, month, day);
-			users.add(newUser);
-						
+		select=VideoTools.introMenu();			
+	
+		if (select == 1) {
+			VideoTools.newUser();
+			VideoTools.mainMenu();
 		} else {
-			
-			User registeredUser = new User (firstName, lastName, userName0, psswd,  year, month, day);
-			//userName = registeredUser.getUser(userName0, users);
-			
+			currentUser = VideoTools.getUser(users);
 		}
 		
 		do {
+			//VideoTools.mainMenu();		
+			switch (VideoTools.mainMenu()) {
 		
-			do {
+			case 1:
 			
-				System.out.println("\nPlease try option:");
-				System.out.println("******************");
-				System.out.println("1. Create new video \n2. List your videos \n3. Delete a video \n4. Log out");
-				select = entry.nextLine();
+				//User.createVideo(currentUser);
+				videos.add(User.createVideo(currentUser));
 			
-				if (!select.equals("1") && !select.equals("2") && !select.equals("3") && !select.equals("4"))
-					System.out.println("Illegal option.");
+				break;
 			
-			} while (!select.equals("1") && !select.equals("2") && !select.equals("3") && !select.equals("4"));
-		 
-			select2 = (byte)Integer.parseInt(select);*/
+			case 2:
+			
+				Video.listVideo(currentUser, videos);
+						
+				break;
+			
+			case 3:
+			
+				User.deleteVideo(videos);
+				break;
+			
+			default:
+				
+				System.out.println("Good bye, " + currentUser);
+				
+			}
+					
+		} while (VideoTools.turnAgain());
 		
-			/*switch (select2) {
-		 
-				case 1:
-		 		
-					Video createdVideo = createVideo(userName);
-					//makeVideo.getVideo(userName, videos);
-					videos.add(createdVideo);
-			 		
-					break;
-			
-				case 2:
-		 		
-					Video giveVideo = new Video(userName0, urlAddress, title, myTags);
-					giveVideo.getVideo(userName, videos);
-		 		
-					break;
-		 		
-				case 3:
-		 		
-					System.out.println("Introduce video title to remove:");
-					String removeVideo = entry.nextLine();
-		 		
-					Video killVideo = new Video(userName, urlAddress, title, myTags);
-					killVideo.deleteVideo(userName, removeVideo, videos);
-		 		
-					break;
-		 		
-				default:
-	 			
-			}*/
-			/*System.out.print("\nDo you want to run another option (y/N)?");
-			select = entry.nextLine();
-			select = select.toUpperCase();
-		 
-			} while (select.equals("Y"));
+		System.out.println("Good bye, " + currentUser);
 		
-		System.out.println("\nGood bye, " + userName);*/
-		} 
+	} 
 
 }

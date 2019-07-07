@@ -8,6 +8,8 @@ public class User {
 		this.lastName = lastName;
 		this.userName = userName;
 		this.psswd = psswd;
+		//this.setUserName(userName);
+		//this.setPsswd(psswd);
 		this.year = year;
 		this.month = month;
 		this.day = day;
@@ -15,7 +17,7 @@ public class User {
 					
 	}
 	
-	public User createUser () {
+	/*public User createUser () {
 				
 		Scanner entry = new Scanner(System.in);
 		
@@ -26,7 +28,7 @@ public class User {
 		lastName = entry.nextLine();
 		
 		System.out.println ("Please enter an User Name: ");
-		userName = entry.nextLine();
+		setUserName(entry.nextLine());
 		
 		System.out.println ("Please enter your birth date: \nYear: ");
 		year = Integer.parseInt(entry.nextLine());
@@ -38,30 +40,30 @@ public class User {
 		day = Integer.parseInt(entry.nextLine());;
 		
 		System.out.println ("Please enter password: ");
-		psswd = entry.nextLine();
+		setPsswd(entry.nextLine());
 				
-		User myUser = new User (firstName, lastName, userName, psswd, year, month, day);
+		User myUser = new User (firstName, lastName, getUserName(), getPsswd(), year, month, day);
 		return myUser;
 	}
 	
-	public String getUser(List<User> users) {//revisa esto y compara con el createUSer, quiz�s carga la lista en el main
+	/*public static String getUser(List<User> users) {//revisa esto y compara con el createUSer, quiz�s carga la lista en el main
 		
 		Scanner entry = new Scanner(System.in);
 		User myUser = null;
 		do {
 			
 			System.out.println ("Please enter your User name: ");
-			userName = entry.nextLine();
+			setUserName(entry.nextLine());
 		
 			System.out.println ("Please enter password: ");
-			psswd = entry.nextLine();
+			setPsswd(entry.nextLine());
 		
 			for (User e:users) {
 			
-				if ((e.userName).equals(userName)) {				
-					if ((e.psswd).equals(psswd)) {	
-						System.out.println("\nWelcome, " + e.userName);
-						return e.userName;
+				if ((User.getUserName()).equals(getUserName())) {				
+					if ((User.getPsswd()).equals(getPsswd())) {	
+						System.out.println("\nWelcome, " + User.getUserName());//¿Por qué e.userName da señal de advertencia?
+						return User.getUserName();
 					} else {					
 						System.out.println("Invalid password");
 						break;
@@ -73,9 +75,9 @@ public class User {
 		} while (myUser == null);
 				
 		return null;
-	}
+	}*/
 
-	public Video createVideo(String userName) {// cambiar a user
+	public static Video createVideo(String userName) {// cambiar a user
 		
 		String title;
 		String urlAddress;
@@ -99,20 +101,33 @@ public class User {
 			if (!tag.equals("0")) newTags.add(tag);
 			
 		} while (!tag.equals("0"));
-		
-		System.out.println(userName + " " + urlAddress + " " + title + " " + newTags);
-		
+	
 		Video newVideo = new Video(userName, urlAddress, title, newTags);
 		return newVideo;
 	}
+	
+	
+	
+	public static void deleteVideo(List<Video> videos) {
 		
+		for (Video e:videos) {
+			if((e.getTitle()).equals(title)) {
+				videos.remove(e);
+				System.out.println("The video " + e.getTitle() + " has been removed");
+				return;
+			}
+		System.out.println("Video not found");	
+		}
+	}
+			
 	private String firstName;
 	private String lastName;
-	private String userName;
-	private String psswd;
+	protected String userName;
+	protected String psswd;
 	private int year;
 	private int month;
 	private int day;
+	protected static String title;
 	//private List <User> users;
 	
 }
