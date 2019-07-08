@@ -7,6 +7,10 @@ public class VideoClub {
 		
 		byte select;
 		User currentUser = null;
+		String title;
+		String urlAddress;
+		String tag;
+		List <String> tags = new ArrayList <String>();
 				
 		List <User> users = new ArrayList <User>();
 	
@@ -43,8 +47,21 @@ public class VideoClub {
 		
 			case 1:
 			
-				///pasar al metodo los datos para crear el video.
-				currentUser.addVideo();
+				Scanner entry = new Scanner(System.in);
+				System.out.println("Enter video name: ");
+				title = entry.nextLine();
+				
+				System.out.println("Enter video url: ");
+				urlAddress = entry.nextLine();
+								
+				do {
+					System.out.println("Please introduce video tag (type '0' to finish): ");
+					tag = entry.nextLine();
+					if (!tag.equals("0")) tags.add(tag);
+				
+				} while (!tag.equals("0"));
+				
+				currentUser.addVideo(title, urlAddress, tags);
 			
 				break;
 			

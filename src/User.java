@@ -12,90 +12,8 @@ public class User {
 		this.month = month;
 		this.day = day;
 		this.videoList = videoList;
-		
-		/*Video video1 = new Video ("Lamb", "pepevideos.com?=13", "Braindead", Arrays.asList("gore", "thriller"));
-		Video video2 = new Video ("RufusTFirefly", "pepevideos.com?=43", "A night in the Opera", Arrays.asList("comedy"));
-		Video video3 = new Video ("RufusTFirefly", "pepevideos.com?=432", "Go West", Arrays.asList("comedy", "western"));
-		Video video4 = new Video ("ImTheBest", "pepevideos.com?=88", "Dr. Cooper's Life", Arrays.asList("science"));
-		Video video5 = new Video ("Hagane", "pepevideos.com?=188", "FullMetal Alchemist", Arrays.asList("anime", "shounen"));
-		
-		User user1 = new User ("Groucho", "Marx", "RufusTFirefly", "ducksoup", 2019,2,15, Arrays.asList(video2, video3)); //No puedo hacer esto en la clase Video
-		User user2 = new User ("Sheldon", "Cooper", "ImTheBest", "BigBang", 2014,8,5, Arrays.asList(video4));
-		User user3 = new User ("Hannibal", "Lecter", "Lamb", "Clarisse", 2019,2,15, Arrays.asList(video1));
-		User user4 = new User ("Edward", "Elric", "Hagane", "Imnotsmall", 2019,2,15, Arrays.asList(video5));*/
-
-		/*users.add(user1);
-		users.add(user2);
-		users.add(user3);
-		users.add(user4);*/
 	}
-	
-	/*public User createUser () {
-				
-		Scanner entry = new Scanner(System.in);
 		
-		System.out.println ("Please enter your first name: ");
-		firstName = entry.nextLine();
-		
-		System.out.println ("Please enter your last name: ");
-		lastName = entry.nextLine();
-		
-		System.out.println ("Please enter an User Name: ");
-		setUserName(entry.nextLine());
-		
-		System.out.println ("Please enter your birth date: \nYear: ");
-		year = Integer.parseInt(entry.nextLine());
-		
-		System.out.println ("Month: ");
-		month = Integer.parseInt(entry.nextLine());;
-		
-		System.out.println ("Day: ");
-		day = Integer.parseInt(entry.nextLine());;
-		
-		System.out.println ("Please enter password: ");
-		setPsswd(entry.nextLine());
-				
-		User myUser = new User (firstName, lastName, getUserName(), getPsswd(), year, month, day);
-		return myUser;
-	}
-	
-	/*public static String getUser(List<User> users) {//revisa esto y compara con el createUSer, quiz�s carga la lista en el main
-		
-		Scanner entry = new Scanner(System.in);
-		User myUser = null;
-		do {
-			
-			System.out.println ("Please enter your User name: ");
-			setUserName(entry.nextLine());
-		
-			System.out.println ("Please enter password: ");
-			setPsswd(entry.nextLine());
-		
-			for (User e:users) {
-			
-				if ((User.getUserName()).equals(getUserName())) {				
-					if ((User.getPsswd()).equals(getPsswd())) {	
-						System.out.println("\nWelcome, " + User.getUserName());//¿Por qué e.userName da señal de advertencia?
-						return User.getUserName();
-					} else {					
-						System.out.println("Invalid password");
-						break;
-					}
-				}
-			}
-			System.out.println("User not found");
-				
-		} while (myUser == null);
-				
-		return null;
-	}*/
-
-	
-	
-	
-	
-
-	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -168,7 +86,7 @@ public class User {
 		this.videoList = videoList;
 	}
 	
-	public void addVideo(String title, String urlAddress, List<String> newTags)  {
+	public void addVideo(String title, String urlAddress, List<String> tags)  {
 						
 
 		/*do {
@@ -178,7 +96,7 @@ public class User {
 			
 		} while (!tag.equals("0"));*/
 	
-		Video newVideo = new Video(urlAddress, title, newTags);
+		Video newVideo = new Video(urlAddress, title, tags);
 		this.getVideoList().add(newVideo);
 	}
 	
