@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -48,13 +49,15 @@ public class VideoTools {
 			
 		System.out.println ("Please enter password: ");
 		psswd = entry.nextLine();
+		
+		List<Video> videoList = new ArrayList<Video>();
 					
-		User newUser = new User (firstName, lastName, userName, psswd, year, month, day);
+		User newUser = new User (firstName, lastName, userName, psswd, year, month, day, videoList);
 		
 		return newUser;
 	}
 	
-	public static String getUser(List<User> users) {//revisa esto y compara con el createUSer, quiz�s carga la lista en el main
+	public static User getUser(List<User> users) {//revisa esto y compara con el createUSer, quiz�s carga la lista en el main
 		
 		Scanner entry = new Scanner(System.in);
 		User myUser = null;
@@ -71,7 +74,7 @@ public class VideoTools {
 				if ((e.userName).equals(userName)) {				
 					if ((e.psswd).equals(psswd)) {	
 						System.out.println("\nWelcome, " + e.userName);//¿Por qué e.userName da señal de advertencia?
-						return e.userName;
+						return e;
 					} else {					
 						System.out.println("Invalid password");
 						break;
@@ -93,13 +96,13 @@ public class VideoTools {
 			
 			System.out.println("\nPlease try option:");
 			System.out.println("******************");
-			System.out.println("1. Create new video \n2. List your videos \n3. Delete a video \n4. Log out");
+			System.out.println("1. Create new video \n2. List your videos \n3. Delete a video");
 			select0 = entry.nextLine();
 		
-			if (!select0.equals("1") && !select0.equals("2") && !select0.equals("3") && !select0.equals("4"))
+			if (!select0.equals("1") && !select0.equals("2") && !select0.equals("3"))
 				System.out.println("Illegal option.");
 		
-		} while (!select0.equals("1") && !select0.equals("2") && !select0.equals("3") && !select0.equals("4"));
+		} while (!select0.equals("1") && !select0.equals("2") && !select0.equals("3"));
 	 	
 		select = (byte)Integer.parseInt(select0);
 		return select;
@@ -127,4 +130,6 @@ public class VideoTools {
 	private static int year;
 	private static int month;
 	private static int day;
+	//private List <Video> videoList;
+
 }
