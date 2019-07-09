@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Video {
 	
-	public Video (String urlAddress, String title, List <String> myTags) {
+	public Video (String urlAddress, String title, ArrayList<String> myTags) {
 		
 		this.urlAddress = urlAddress;
 		this.title = title;
@@ -27,10 +27,10 @@ public class Video {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public List<String> getMyTags() {
+	public ArrayList<String> getMyTags() {
 		return myTags;
 	}
-	public void setMyTags(List<String> myTags) {
+	public void setMyTags(ArrayList<String> myTags) {
 		this.myTags = myTags;
 	}
 
@@ -41,6 +41,6 @@ public class Video {
 
 	private String urlAddress;
 	private String title;
-	private List <String> myTags;
+	private ArrayList <String> myTags;
 	
 }

@@ -25,39 +25,78 @@ public class VideoTools {
 		
 	}
 	
-	public static User newUser() {
+	public static User newUser() throws Exception {
 		
 		Scanner entry =new Scanner(System.in);
-						
-		System.out.println ("Please enter your first name: ");
-		firstName = entry.nextLine();
-			
-		System.out.println ("Please enter your last name: ");
-		lastName = entry.nextLine();
-			
-		System.out.println ("Please enter an User Name: ");
-		userName = entry.nextLine();
-			
-		System.out.println ("Please enter your birth date: \nYear: ");
-		year = Integer.parseInt(entry.nextLine());
-			
-		System.out.println ("Month: ");
-		month = Integer.parseInt(entry.nextLine());;
-			
-		System.out.println ("Day: ");
-		day = Integer.parseInt(entry.nextLine());;
-			
-		System.out.println ("Please enter password: ");
-		psswd = entry.nextLine();
+		boolean isANumber;
 		
-		List<Video> videoList = new ArrayList<Video>();
-					
+		//do {
+			System.out.println ("Please enter your first name: ");
+			firstName = entry.nextLine();
+			if (firstName.isEmpty()) throw new Exception("Invalid void field.");
+		//} while (firstName.isEmpty());
+			
+		//do {
+			System.out.println ("Please enter your last name: ");
+			lastName = entry.nextLine();
+			if (lastName.isEmpty()) throw new NullPointerException("Invalid void field.");
+		//} while (lastName.isEmpty());
+		
+		//do {
+			System.out.println ("Please enter an User Name: ");
+			userName = entry.nextLine();
+			if (userName.isEmpty()) throw new NullPointerException("Invalid void field.");
+		//} while (userName.isEmpty());
+			
+		/*do {
+		
+			try {
+				isANumber = true;*/
+				System.out.println ("Please enter your birth date: \nYear: ");
+				year = Integer.parseInt(entry.nextLine());
+			/*} catch (Exception e) {
+				System.out.print("Invalid year");
+				isANumber = false;
+			}
+		} while (isANumber==false);*/
+		
+		/*do {
+			
+			try {
+				isANumber = true;*/
+				System.out.println ("Month: ");
+				month = Integer.parseInt(entry.nextLine());;
+		/*	} catch (Exception e) {
+				System.out.print("Invalid year");
+				isANumber = false;
+			}
+		} while (isANumber==false);*/
+		
+		/*do {
+			
+			try {
+				isANumber = true;*/
+				System.out.println ("Day: ");
+				day = Integer.parseInt(entry.nextLine());;
+		/*	} catch (Exception e) {
+				System.out.print("Invalid year");
+				isANumber = false;
+			}
+		} while (isANumber==false);*/
+		
+		//do {
+			System.out.println ("Please enter password: ");
+			psswd = entry.nextLine();
+			//if (psswd.isEmpty()) throw new Exception("Invalid void field.");
+	//	} while (firstName.isEmpty());
+	
+		ArrayList<Video> videoList = new ArrayList<Video>();
 		User newUser = new User (firstName, lastName, userName, psswd, year, month, day, videoList);
 		
 		return newUser;
 	}
 	
-	public static User getUser(List<User> users) {//revisa esto y compara con el createUSer, quiz�s carga la lista en el main
+	public static User getUser(List<User> users) throws Exception{//revisa esto y compara con el createUSer, quiz�s carga la lista en el main
 		
 		Scanner entry = new Scanner(System.in);
 		User myUser = null;
@@ -130,6 +169,7 @@ public class VideoTools {
 	private static int year;
 	private static int month;
 	private static int day;
+	
 	//private List <Video> videoList;
 
 }

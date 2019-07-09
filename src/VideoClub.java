@@ -7,62 +7,134 @@ public class VideoClub {
 		
 		byte select;
 		User currentUser = null;
-		String title;
-		String urlAddress;
+		String title = null;;
+		String urlAddress = null;;
 		String tag;
-		List <String> tags = new ArrayList <String>();
-				
-		List <User> users = new ArrayList <User>();
-	
-		Video video1 = new Video ("pepevideos.com?=13", "Braindead", Arrays.asList("gore", "thriller"));
-		Video video2 = new Video ("pepevideos.com?=43", "A night in the Opera", Arrays.asList("comedy"));
-		Video video3 = new Video ("pepevideos.com?=432", "Go West", Arrays.asList("comedy", "western"));
-		Video video4 = new Video ("pepevideos.com?=88", "Dr. Cooper's Life", Arrays.asList("science"));
-		Video video5 = new Video ("pepevideos.com?=188", "FullMetal Alchemist", Arrays.asList("anime", "shounen"));
+		boolean voidField;
+		ArrayList <String> tags = new ArrayList <String>();
+		ArrayList <User> users = new ArrayList <User>();
+
+		//Set videos and users
+		ArrayList <String> tag1 = new ArrayList <String>();
+		tag1.add("gore");
+		tag1.add("dark comedy");
 		
-		User user1 = new User ("Groucho", "Marx", "RufusTFirefly", "ducksoup", 2019,2,15, Arrays.asList(video2, video3)); //No puedo hacer esto en la clase Video
-		User user2 = new User ("Sheldon", "Cooper", "ImTheBest", "BigBang", 2014,8,5, Arrays.asList(video4));
-		User user3 = new User ("Hannibal", "Lecter", "Lamb", "Clarisse", 2019,2,15, Arrays.asList(video1));
-		User user4 = new User ("Edward", "Elric", "Hagane", "Imnotsmall", 2019,2,15, Arrays.asList(video5));
+		ArrayList <String> tag2 = new ArrayList <String>();
+		tag2.add("comedy");
+				
+		ArrayList <String> tag3 = new ArrayList <String>();
+		tag3.add("comedy");
+		tag3.add("western");
+		
+		ArrayList <String> tag4 = new ArrayList <String>();
+		tag4.add("science");
+		
+		ArrayList <String> tag5 = new ArrayList <String>();
+		tag5.add("anime");
+		tag5.add("shounen");
+	
+		Video video1 = new Video ("pepevideos.com?=13", "Braindead", tag1);
+		Video video2 = new Video ("pepevideos.com?=43", "A night in the Opera", tag2);
+		Video video3 = new Video ("pepevideos.com?=432", "Go West", tag3);
+		Video video4 = new Video ("pepevideos.com?=88", "Dr. Cooper's Life", tag4);
+		Video video5 = new Video ("pepevideos.com?=188", "FullMetal Alchemist", tag5);
+		
+		
+		ArrayList <Video> user1Video = new ArrayList <Video>();
+		user1Video.add(video2);
+		user1Video.add(video3);
+
+		ArrayList <Video> user2Video = new ArrayList <Video>();
+		user2Video.add(video4);
+		
+		ArrayList <Video> user3Video = new ArrayList <Video>();
+		user3Video.add(video1);
+		
+		ArrayList <Video> user4Video = new ArrayList <Video>();
+		user4Video.add(video5);
+		
+		User user1 = new User ("Groucho", "Marx", "RufusTFirefly", "ducksoup", 2019,2,15, user1Video); //No puedo hacer esto en la clase Video
+		User user2 = new User ("Sheldon", "Cooper", "ImTheBest", "BigBang", 2014,8,5, user2Video);
+		User user3 = new User ("Hannibal", "Lecter", "Lamb", "Clarisse", 2019,2,15, user3Video);
+		User user4 = new User ("Edward", "Elric", "Hagane", "Imnotsmall", 2019,2,15, user4Video);
 	
 		users.add(user1);
 		users.add(user2);
 		users.add(user3);
 		users.add(user4);
 		
-
+		//main
 		
 		select=VideoTools.introMenu();			
 	
 		if (select == 1) {
-			currentUser = VideoTools.newUser();
+
+			do {
+				try {
+					voidField = true;
+					currentUser = VideoTools.newUser();
+				} catch (Exception e) {
+					System.out.println("Illegal field value. Try again.");
+					voidField = false;
+				}
+			} while (voidField == false);
 			users.add(currentUser);
-			//VideoTools.mainMenu();
+			
 		} else {
-			currentUser = VideoTools.getUser(users); //si null arrojar try catch
+			
+			do {
+				try {
+					voidField = true;
+					currentUser = VideoTools.getUser(users); 
+				} catch (Exception e) {
+					System.out.println("Illegal field value. Try again.");
+					voidField = false;
+				}
+			} while (voidField == false);
 		}
-		
+		Scanner entry = new Scanner(System.in);
+	
 		do {
 			switch (VideoTools.mainMenu()) {
 		
 			case 1:
-			
-				Scanner entry = new Scanner(System.in);
-				System.out.println("Enter video name: ");
-				title = entry.nextLine();
 				
-				System.out.println("Enter video url: ");
-				urlAddress = entry.nextLine();
-								
+				do {
+					try {
+						voidField=false;
+						System.out.println("Enter video name: ");
+						title = entry.nextLine();
+						if (title.isEmpty()) throw new NullPointerException ();
+
+					} catch (NullPointerException e) {
+						voidField=true;
+					}
+
+				} while (voidField==true);
+				
+				do {
+					try {
+						voidField=false;
+						System.out.println("Enter video url: ");
+						urlAddress = entry.nextLine();
+						if (urlAddress.isEmpty()) throw new NullPointerException ();
+
+					} catch (NullPointerException e) {
+						voidField=true;
+					}
+
+				} while (voidField==true);
+				
 				do {
 					System.out.println("Please introduce video tag (type '0' to finish): ");
+					
 					tag = entry.nextLine();
 					if (!tag.equals("0")) tags.add(tag);
-				
+					if (tag.isEmpty()) throw new NullPointerException ("Invalid field. Variable mustn't have null field");
+									
 				} while (!tag.equals("0"));
 				
 				currentUser.addVideo(title, urlAddress, tags);
-			
 				break;
 			
 			case 2:
@@ -72,13 +144,27 @@ public class VideoClub {
 				break;
 			
 			case 3:
-			
-				currentUser.deleteVideo(currentUser);
+				
+				do {
+					try {
+						voidField=false;
+						System.out.println("Introduce video title to delete:");
+						title = entry.nextLine();
+						if (title.isEmpty()) throw new NullPointerException ();
+
+					} catch (NullPointerException e) {
+						voidField=true;
+					}
+
+				} while (voidField==true);
+		
+				currentUser.deleteVideo(title);
 				break;
 		
 			}
 					
 		} while (VideoTools.turnAgain());
+		entry.close();
 		
 		System.out.println("Good bye, " + currentUser.userName);
 		

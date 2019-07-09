@@ -2,7 +2,7 @@ import java.util.*;
 
 public class User {
 	
-	public User(String firstName, String lastName, String userName, String psswd, int year, int month, int day, List videoList) {
+	public User(String firstName, String lastName, String userName, String psswd, int year, int month, int day, ArrayList<Video> videoList) {
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -78,23 +78,15 @@ public class User {
 		this.title = title;
 	}
 
-	public List<Video> getVideoList() {
+	public ArrayList<Video> getVideoList() {
 		return videoList;
 	}
 
-	public void setVideoList(List<Video> videoList) {
+	public void setVideoList(ArrayList<Video> videoList) {
 		this.videoList = videoList;
 	}
 	
-	public void addVideo(String title, String urlAddress, List<String> tags)  {
-						
-
-		/*do {
-			System.out.println("Please introduce video tag (type '0' to finish): ");
-			tag = entry.nextLine();
-			if (!tag.equals("0")) newTags.add(tag);
-			
-		} while (!tag.equals("0"));*/
+	public void addVideo(String title, String urlAddress, ArrayList<String> tags)  {
 	
 		Video newVideo = new Video(urlAddress, title, tags);
 		this.getVideoList().add(newVideo);
@@ -108,7 +100,7 @@ public class User {
 		if(this.getVideoList().size()!=0) 
 		{
 			for (Video e : this.getVideoList()) {
-				System.out.println("name: "+e.getTitle()+" Tags: "+e.getMyTags().toString());
+				System.out.println("name: "+e.getTitle()+"\nTags: " + e.getMyTags().toString() + "\n");
 			}
 		}
 		else 
@@ -119,35 +111,24 @@ public class User {
 
 	}
 	
-	public void deleteVideo(User currentUser) {
+	public void deleteVideo(String title) {
 		
-		Scanner entry = new Scanner(System.in);
-		
-		System.out.println("Introduce video title to detele:");
-		title = entry.nextLine();
-	
-		for (Video e:currentUser.videoList) {
+		for (Video e:this.videoList) {
 			if((e.getTitle()).equals(title)) {
-				//e.remove(title);
+				this.videoList.remove(e);
 				System.out.println("The video " + e.getTitle() + " has been removed");
 				return;
 			}
-		System.out.println("Video not found");	
 		}
+		System.out.println("Video not found");
 	}
-			
-	
-	
-	
+
 	@Override //To edit para hacer el get
 	public String toString() {
 		return "User [firstName=" + this.getFirstName() + ", lastName=" + lastName + ", userName=" + userName + ", psswd=" + psswd
 				+ ", year=" + year + ", month=" + month + ", day=" + day + ", title=" + title + ", videoList="
 				+ videoList + "]";
 	}
-
-
-
 
 	private String firstName;
 	private String lastName;
@@ -157,6 +138,6 @@ public class User {
 	private int month;
 	private int day;
 	protected String title;
-	private List <Video> videoList;
+	private ArrayList <Video> videoList;
 	
 }
