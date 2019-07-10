@@ -9,12 +9,6 @@ public class Video {
 		this.myTags = myTags;	
 		
 	}
-	
-
-	
-
-
-
 	public String getUrlAddress() {
 		return urlAddress;
 	}
@@ -33,11 +27,6 @@ public class Video {
 	public void setMyTags(ArrayList<String> myTags) {
 		this.myTags = myTags;
 	}
-
-
-
-
-
 
 	private String urlAddress;
 	private String title;

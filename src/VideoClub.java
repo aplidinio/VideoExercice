@@ -74,7 +74,7 @@ public class VideoClub {
 					voidField = true;
 					currentUser = VideoTools.newUser();
 				} catch (Exception e) {
-					System.out.println("Illegal field value. Try again.");
+					System.out.println("Invalid void field. Try again.");
 					voidField = false;
 				}
 			} while (voidField == false);
@@ -104,7 +104,7 @@ public class VideoClub {
 						voidField=false;
 						System.out.println("Enter video name: ");
 						title = entry.nextLine();
-						if (title.isEmpty()) throw new NullPointerException ();
+						if (title.isEmpty()) throw new NullPointerException ("Invalid void field");
 
 					} catch (NullPointerException e) {
 						voidField=true;
@@ -117,7 +117,7 @@ public class VideoClub {
 						voidField=false;
 						System.out.println("Enter video url: ");
 						urlAddress = entry.nextLine();
-						if (urlAddress.isEmpty()) throw new NullPointerException ();
+						if (urlAddress.isEmpty()) throw new NullPointerException ("Invalid void field");
 
 					} catch (NullPointerException e) {
 						voidField=true;
@@ -130,7 +130,7 @@ public class VideoClub {
 					
 					tag = entry.nextLine();
 					if (!tag.equals("0")) tags.add(tag);
-					if (tag.isEmpty()) throw new NullPointerException ("Invalid field. Variable mustn't have null field");
+					if (tag.isEmpty()) throw new NullPointerException ("Invalid void field");
 									
 				} while (!tag.equals("0"));
 				
@@ -150,7 +150,7 @@ public class VideoClub {
 						voidField=false;
 						System.out.println("Introduce video title to delete:");
 						title = entry.nextLine();
-						if (title.isEmpty()) throw new NullPointerException ();
+						if (title.isEmpty()) throw new NullPointerException ("Invalid void field");
 
 					} catch (NullPointerException e) {
 						voidField=true;
@@ -164,8 +164,8 @@ public class VideoClub {
 			}
 					
 		} while (VideoTools.turnAgain());
-		entry.close();
 		
+		entry.close();
 		System.out.println("Good bye, " + currentUser.userName);
 		
 	} 

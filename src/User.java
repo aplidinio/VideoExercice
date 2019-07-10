@@ -91,24 +91,19 @@ public class User {
 		Video newVideo = new Video(urlAddress, title, tags);
 		this.getVideoList().add(newVideo);
 	}
-	
 
 	public void listVideo() {
 		
 		System.out.println(this.userName + ", you have the following videos:");
 		System.out.println("********************************************");
-		if(this.getVideoList().size()!=0) 
-		{
+		if(this.getVideoList().size()!=0) {
+		
 			for (Video e : this.getVideoList()) {
 				System.out.println("name: "+e.getTitle()+"\nTags: " + e.getMyTags().toString() + "\n");
 			}
-		}
-		else 
-		{
+		} else {
 			System.out.println("You still haven't got videos");
 		}
-		
-
 	}
 	
 	public void deleteVideo(String title) {
@@ -116,7 +111,7 @@ public class User {
 		for (Video e:this.videoList) {
 			if((e.getTitle()).equals(title)) {
 				this.videoList.remove(e);
-				System.out.println("The video " + e.getTitle() + " has been removed");
+				System.out.println("The video " + e.getTitle() + " has been removed.");
 				return;
 			}
 		}
@@ -125,6 +120,8 @@ public class User {
 
 	@Override //To edit para hacer el get
 	public String toString() {
+		
+		
 		return "User [firstName=" + this.getFirstName() + ", lastName=" + lastName + ", userName=" + userName + ", psswd=" + psswd
 				+ ", year=" + year + ", month=" + month + ", day=" + day + ", title=" + title + ", videoList="
 				+ videoList + "]";
